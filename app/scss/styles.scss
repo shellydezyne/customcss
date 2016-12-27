@@ -1,0 +1,32 @@
+/* ordering of importing files is imp...should follow hiearchy*/
+@import url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
+//@import "compass";
+//@import "compass/reset";
+@import "susy";
+//@import "breakpoint";
+@import 'breakpoint'; // or 'breakpoint-sass' when using npm
+@import 'breakpoint-slicer';
+
+@import "variables";
+@import "mixins";
+@import "base";
+@import "layout";
+@import "modules";
+
+$susy: (
+  flow: ltr, // ltr | rtl
+  output: float, // float | isolate
+  math: fluid, // fluid | static (requires column-width)
+  column-width: 40px, // false | value
+  container:auto, // length or % | auto
+  container-position: center, // left | center | right | <length> [*2] (grid padding)
+  last-flow: to,
+  columns: 12,
+  gutters: 1,
+  gutter-position: after, // before | after | split | inside | inside-static (requires column-width)
+  global-box-sizing: content-box, // content-box | border-box (affects inside/inside-static)
+);
+
+$small:30em;
+$medium:47em;
+$large:95em;
