@@ -1,1 +1,145 @@
-@import url("http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css")
+/* ordering of importing files is imp...should follow hiearchy*/
+@import url("http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css");
+* {
+  box-sizing: border-box;
+}
+
+section:after, .gallery:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body {
+  padding: 0 .625rem;
+}
+
+.container {
+  max-width: 71.25rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+header {
+  background-color: #38a1d6;
+  height: 4rem;
+  margin-bottom: 1.69492%;
+}
+
+section {
+  margin-bottom: 1.69492%;
+}
+
+.gallery {
+  margin: 0;
+}
+
+.gallery__item {
+  width: 49.15254%;
+  float: left;
+  background-color: #fcee21;
+  height: 8rem;
+  margin-bottom: 1.69492%;
+}
+
+.gallery__item:nth-child(2n + 1) {
+  margin-left: 0;
+  margin-right: -100%;
+  clear: both;
+  margin-left: 0;
+}
+
+.gallery__item:nth-child(2n + 2) {
+  margin-left: 50.84746%;
+  margin-right: -100%;
+  clear: none;
+}
+
+.gallery__item:nth-last-child(-n+2) {
+  margin-bottom: 0;
+}
+
+@media (min-width: 40rem) {
+  .gallery__item {
+    width: 32.20339%;
+    float: left;
+  }
+  .gallery__item:nth-child(3n + 1) {
+    margin-left: 0;
+    margin-right: -100%;
+    clear: both;
+    margin-left: 0;
+  }
+  .gallery__item:nth-child(3n + 2) {
+    margin-left: 33.89831%;
+    margin-right: -100%;
+    clear: none;
+  }
+  .gallery__item:nth-child(3n + 3) {
+    margin-left: 67.79661%;
+    margin-right: -100%;
+    clear: none;
+  }
+  .gallery__item:nth-last-child(-n+3) {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 64rem) {
+  .gallery__item {
+    width: 23.72881%;
+    float: left;
+  }
+  .gallery__item:nth-child(4n + 1) {
+    margin-left: 0;
+    margin-right: -100%;
+    clear: both;
+    margin-left: 0;
+  }
+  .gallery__item:nth-child(4n + 2) {
+    margin-left: 25.42373%;
+    margin-right: -100%;
+    clear: none;
+  }
+  .gallery__item:nth-child(4n + 3) {
+    margin-left: 50.84746%;
+    margin-right: -100%;
+    clear: none;
+  }
+  .gallery__item:nth-child(4n + 4) {
+    margin-left: 76.27119%;
+    margin-right: -100%;
+    clear: none;
+  }
+  .gallery__item:nth-last-child(-n+4) {
+    margin-bottom: 0;
+  }
+}
+
+footer {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #a1acb5;
+  height: 4rem;
+}
+
+.outline {
+  display: block;
+  margin: 1.69492% 0;
+  font-family: Lato, sans-serif;
+  color: #38a1d6;
+  text-decoration: none;
+  text-align: center;
+}
+
+.outline:hover {
+  text-decoration: underline;
+}

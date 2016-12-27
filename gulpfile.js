@@ -46,7 +46,7 @@
   gulp.task('sass', function() {
     return gulp.src('app/scss/styles.scss') // Gets all files ending with .scss in app/scss and children dirs
       .pipe(sass({
-        outputStyle: 'compressed',
+        outputStyle: 'expanded', //'compressed'
         includePaths: ['node_modules/susy/sass','node_modules/breakpoint-sass/stylesheets','node_modules/breakpoint-slicer/stylesheets']
       }).on('error', sass.logError)) // Passes it through a gulp-sass
       .pipe(gulp.dest('app/css')) // Outputs it in the css folder

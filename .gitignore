@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+#Generated css files
+app/css/styles.css
+
 # Runtime data
 pids
 *.pid
