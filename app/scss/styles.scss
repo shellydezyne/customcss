@@ -1,32 +1,60 @@
 /* ordering of importing files is imp...should follow hiearchy*/
-@import url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
+//@import url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
 //@import "compass";
 //@import "compass/reset";
+//@import "compass/css3";
+//@import "compass";
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+
 @import "susy";
+//@import "compass/reset";
+//
 //@import "breakpoint";
 @import 'breakpoint'; // or 'breakpoint-sass' when using npm
 @import 'breakpoint-slicer';
+@import "bourbon/bourbon";
+//@import "base/base";
 
+@import "color";
 @import "variables";
+@import "global";
 @import "mixins";
 @import "base";
 @import "layout";
 @import "modules";
 
+@import "font-awesome";
+
+ul{list-style-type: none;}
+a{text-decoration: none;}
+
+body {
+  padding: 0 0 rem;
+  //font-family: $lucida-grande;
+  font-family: 'Oxygen', 'Open Sans', sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.p{
+  font-family: 'Open Sans', sans-serif;
+}
 $susy: (
   flow: ltr, // ltr | rtl
   output: float, // float | isolate
   math: fluid, // fluid | static (requires column-width)
   column-width: 40px, // false | value
-  container: 71.25rem, // length or % | auto
+  container: 100%, // length or % | auto
   container-position: center, // left | center | right | <length> [*2] (grid padding)
   last-flow: to,
   columns: 12,
   gutters: 1/4,
   gutter-position: after, // before | after | split | inside | inside-static (requires column-width)
-  global-box-sizing: content-box, // content-box | border-box (affects inside/inside-static)
+  global-box-sizing: border-box, // content-box | border-box (affects inside/inside-static)
   debug: (
-  image: hide,
+  //image: show-columns,
   color: rgba(#66f, .25),
   output: background,
   toggle: top right,
@@ -41,6 +69,7 @@ $susy: (
 );
 
 $shorthand: 12 1/4 fluid float after;
+
 
 $small:30em;
 $medium:47em;
@@ -62,9 +91,6 @@ $tablet-wide: 48rem; // 768px
 $desktop: 64rem; // 1024px
 $widescreen: 71.25rem; // 1140px
 
-* {
-  box-sizing: border-box;
-}
 
 %clearfix {
   &:after {
@@ -74,9 +100,7 @@ $widescreen: 71.25rem; // 1140px
   }
 }
 
-body {
-  padding: 0 .625rem;
-}
+
 
 .container {
   @include container();
@@ -84,15 +108,253 @@ body {
 
 header {
   background-color: $color-primary;
-  height: 4rem;
+  height: 3rem;
   margin-bottom: gutter();
 }
-
 section {
   @extend %clearfix;
   margin-bottom: gutter();
 }
+a > img {
+    vertical-align: middle;
+}
+a img {
+    border: none;
+}
+img {
+    max-height: 100%;
+}
+img, object, embed, audio, video {
+    max-width: 100%;
+}
+/* Horizontal Menu
+-----------------------------------------------*/
 
+.header_hor{
+  @include container(12);
+}
+.site-logo{
+  @include span(3 of 12);
+  float : left;
+  padding: 0.75rem 0 0.5rem 1.5rem;
+  vertical-align: middle;
+  max-width: 60%;
+}
+img.default-logo {
+  max-width: 60%;
+  max-height: 60%;
+}
+.header-info-col{
+  @include span(3 at 10 of 12);
+  position: right;
+  text-align: center;
+  margin-top: 1rem;
+  color: #42427c;
+  font-size: 1rem;
+}
+.header_hor_nav{
+  @include span(6 at 4 of 12);
+  margin-top: 0rem;
+  .hor_nav{
+    float: right;
+    position: relative;
+    margin-top: 1rem;
+    //left: 50%;
+  }
+
+}
+
+.hor_nav_item{
+  float: right;
+  position: relative;
+  right: 10%;
+  margin-left: 2px;
+  &:first-child{
+    margin-left: 0
+  }
+}
+
+.hor_nav_link{
+  display: block;
+  height: inherit;
+  line-height: 1rem;
+  padding: 0 10%;
+  text-transform: uppercase;
+  //background-color: #81b773;
+  color: #42427c;
+  font-size: 1rem;
+  @include transition(background-color,.2s,ease-in-out);
+
+  &:hover{
+    //background-color: lighten(#81b773,5%);
+    color: lighten(#42427c,10%);
+  }
+}
+.author_hor_wrapper{
+  @extend %clearfix;
+  @include container(12);
+  margin-bottom: gutter();
+  height: 8rem;
+}
+.author_hor{
+  @include span(12 of 12);
+  @include display(flex);
+  @include flex-direction(row);
+  @include align-items(center);
+
+}
+img.author-image{
+  border-radius: 100%;
+
+}
+.author_image{
+  margin-left: span(3);
+}
+.author_bio_follow{
+  @include display(flex);
+  @include flex-direction(column);
+  @include align-items(stretch);
+  @include  justify-content(justify);
+  margin-left: 1rem;
+  font-size: 0.75rem;
+}
+.author_name{
+  font-size: 1rem;
+}
+.author_bio{
+  @include ellipsis(50%);
+  margin-top: 1rem;
+}
+.author_post_date_readtime{
+  @include display(flex);
+}
+.post_image_banner_wrapper{
+  @extend %clearfix;
+  @include container(12);
+  margin-bottom: gutter();
+}
+.post_image_banner{
+  @include span(12 of 12);
+  text-align: center;
+}
+.post_body_wrapper{
+  @extend %clearfix;
+  @include container(12);
+  margin-bottom: gutter();
+  height: auto;
+}
+.post_body_sm_banner{
+  @include span(3 of 12);
+  text-align: center;
+}
+.post_body_main{
+  @include span(6 at 4 of 12);
+  .title{
+    text-align: center;
+  }
+}
+
+.post_rec_wrapper{
+  @extend %clearfix;
+  @include container(80%);
+  margin-bottom: gutter();
+  .post_rec_card{
+    @include span(4 of 12);
+    margin-right: 0rem;
+    margin-left: 0rem;
+    padding: 1rem 0rem 0rem 1rem;
+    height: span(4);
+    .post_rec_card_image{
+      max-width: 100%;
+      height: span(4);
+      img.post-rec-image{
+        height: 100px!important;
+        width: span(4 of 4);
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        overflow: hidden;
+      }
+      .image-1{
+        background-image: url('../images/rec-post-1.jpeg');
+        background-position: 50% 50% !important;
+        background-origin: border-box!important;
+        background-size: cover!important;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        height: 100px!important;
+        width: span(4 of 4);
+      }
+      .image-2{
+        background-image: url('../images/rec-post-2.jpeg');
+        background-position: 50% 50% !important;
+        background-origin: border-box!important;
+        background-size: cover!important;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        height: 100px!important;
+        width: span(4 of 4);
+      }
+      .image-3{
+        background-image: url('../images/rec-post-3.png');
+        background-position: 50% 50% !important;
+        background-origin: border-box!important;
+        background-size: cover!important;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        height: 100px!important;
+        width: span(4 of 4);
+      }
+    }
+  .post_rec_card_text{
+    padding:15px!important;
+    height: 180px!important;
+    box-sizing: border-box!important;
+    display: flex!important;
+    flex-direction: column!important;
+    justify-content: center!important;
+    box-shadow: 0 1px 7px rgba(0,0,0,.05);
+    border: 1px solid rgba(0,0,0,.04)!important;
+    .tagline{
+      font-size: 0.75rem;
+      font-family: 'Oxygen', sans-serif;
+      @include ellipsis(100%);
+      color: grey;
+      margin-bottom: 7px;
+    }
+    .title{
+      font-size: 1rem;
+      font-size: 24px!important;
+      @include ellipsis(100%);
+      letter-spacing: -.02em!important;
+      font-family: 'Oxygen', sans-serif;
+      color: black;
+      margin-bottom: 7px;
+    }
+    .iconstrip {
+      box-sizing: border-box!important;
+      display: flex!important;
+      flex-direction: row!important;
+      justify-content:  space-around !important;
+      .iconstripvert{
+        margin-left: 7px;
+        float:left;
+      }
+      .avatar-image{
+        border-radius: 100%;
+        height: 36px;
+        width:36px;
+      }
+      .iconstriphor{
+        padding-top: 10px;
+      }
+    }
+
+  }
+  }
+}
+
+/* Horizont
+/*
 .gallery {
   margin: 0;
   @extend %clearfix;
@@ -124,7 +386,21 @@ section {
     }
   }
 }
-
+.ridiculous-background {
+  @include background-image(url("../images/gulp.png"), url("../images/grunt.png"));
+  background-position: center top, center;
+  background-repeat: no-repeat, repeat-x; //repeat-y
+  height: 560px;
+  @include border-color(red green null blue);
+  @include border-width(1em 20px null 100%);
+}
+.extreme-ridiculous{
+  @include background(url("../images/gulp.png"), linear-gradient(red, green), center no-repeat orange scroll);
+  height: 560px;
+  @include selection(true) {
+    background-color: #ffbb52;
+  }
+}*/
 footer {
   @include span(full);
   background-color: $color-grey;
@@ -134,7 +410,8 @@ footer {
 .outline {
   display: block;
   margin: gutter() 0;
-  font-family: Lato, sans-serif;
+  //font-family: Lato, sans-serif;
+  font-family: 'Oxygen', sans-serif;
   color: $color-primary;
   text-decoration: none;
   text-align: center;
@@ -143,3 +420,213 @@ footer {
     text-decoration: underline;
   }
 }
+
+/*
+.dezyne-heart-icon{
+  @include icon(before, heart) {
+        color: #b4b4b6;
+        font-size: 30px;
+    }
+}
+
+.dezyne-heart-icon:hover, .dezyne-heart-icon:focus {
+  @include icon(before, heart) {
+        color: red;
+        font-size: 30px;
+    }
+}
+
+.card {
+  position: relative;
+  margin: $element-top-margin 0 $element-bottom-margin 0;
+  background-color: $card-bg-color;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+  @extend .z-depth-1;
+
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 300;
+    &.activator {
+      cursor: pointer;
+    }
+  }
+
+  // Card Sizes
+  &.small, &.medium, &.large {
+    position: relative;
+
+    .card-image {
+      max-height: 60%;
+      overflow: hidden;
+    }
+    .card-image + .card-content {
+      max-height: 40%;
+    }
+    .card-content {
+      max-height: 100%;
+      overflow: hidden;
+    }
+    .card-action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &.small {
+    height: 300px;
+  }
+
+  &.medium {
+    height: 400px;
+  }
+
+  &.large {
+    height: 500px;
+  }
+
+  // Horizontal Cards
+  &.horizontal {
+    &.small, &.medium, &.large {
+      .card-image {
+        height: 100%;
+        max-height: none;
+        overflow: visible;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+
+    display: flex;
+
+    .card-image {
+      max-width: 50%;
+      img {
+        border-radius: 2px 0 0 2px;
+        max-width: 100%;
+        width: auto;
+      }
+    }
+
+    .card-stacked {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      position: relative;
+
+      .card-content {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  // Sticky Action Section
+  &.sticky-action {
+    .card-action {
+      z-index: 2;
+    }
+
+    .card-reveal {
+      z-index: 1;
+      padding-bottom: 64px;
+    }
+  }
+
+
+
+
+  .card-image {
+    position: relative;
+
+    // Image background for content
+    img {
+      display: block;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .card-title {
+      color: $card-bg-color;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: $card-padding;
+    }
+
+  }
+
+  .card-content {
+    padding: $card-padding;
+    border-radius: 0 0 2px 2px;
+
+    p {
+      margin: 0;
+      color: inherit;
+    }
+    .card-title {
+      line-height: 48px;
+    }
+  }
+
+  .card-action {
+    position: relative;
+    background-color: inherit;
+    border-top: 1px solid rgba(160,160,160,.2);
+    padding: $card-padding;
+
+    a:not(.btn):not(.btn-large):not(.btn-floating) {
+      color: $card-link-color;
+      margin-right: $card-padding;
+      transition: color .3s ease;
+      text-transform: uppercase;
+
+      &:hover { color: $card-link-color-light; }
+    }
+  }
+
+  .card-reveal {
+    padding: $card-padding;
+    position: absolute;
+    background-color: $card-bg-color;
+    width: 100%;
+    overflow-y: auto;
+    left: 0;
+    top: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none;
+
+    .card-title {
+      cursor: pointer;
+      display: block;
+    }
+  }
+}
+
+.mdcard {
+  display:block;
+  min-width: 95px;
+  min-height: 95px;
+  background: #f4f4f4;
+  padding:1rem;
+  transition:all 250ms;
+  @include box_shadow(1);
+  &:hover,&:focus {
+    @include box_shadow(3);
+    transform:translateY(-5px);
+  }
+  &:active {
+    @include box_shadow(2);
+    transform:translateY(-2px);
+  }
+}*/

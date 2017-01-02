@@ -45,10 +45,14 @@
 
   gulp.task('sass', function() {
     return gulp.src('app/scss/styles.scss') // Gets all files ending with .scss in app/scss and children dirs
+     // Initializes sourcemaps
+      .pipe(sourcemaps.init())
       .pipe(sass({
         outputStyle: 'expanded', //'compressed'
-        includePaths: ['node_modules/susy/sass','node_modules/breakpoint-sass/stylesheets','node_modules/breakpoint-slicer/stylesheets']
+        includePaths: ['node_modules/susy/sass','node_modules/breakpoint-sass/stylesheets','node_modules/breakpoint-slicer/stylesheets','app/fonts/font-awesome-4.7.0/scss']
       }).on('error', sass.logError)) // Passes it through a gulp-sass
+      // Writes sourcemaps into the CSS file
+      .pipe(sourcemaps.write())
       .pipe(gulp.dest('app/css')) // Outputs it in the css folder
       .pipe(browserSync.reload({ // Reloading with Browser Sync
         stream: true

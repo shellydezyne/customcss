@@ -1,0 +1,376 @@
+/* ordering of importing files is imp...should follow hiearchy*/
+//@import url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
+//@import "compass";
+//@import "compass/reset";
+@import "susy";
+//@import "breakpoint";
+@import 'breakpoint'; // or 'breakpoint-sass' when using npm
+@import 'breakpoint-slicer';
+@import "bourbon/bourbon";
+
+@import "color";
+@import "variables";
+@import "global";
+@import "mixins";
+@import "base";
+@import "layout";
+@import "modules";
+
+@import "font-awesome";
+
+
+
+$susy: (
+  flow: ltr, // ltr | rtl
+  output: float, // float | isolate
+  math: fluid, // fluid | static (requires column-width)
+  column-width: 40px, // false | value
+  container: 71.25rem, // length or % | auto
+  container-position: center, // left | center | right | <length> [*2] (grid padding)
+  last-flow: to,
+  columns: 12,
+  gutters: 1/4,
+  gutter-position: after, // before | after | split | inside | inside-static (requires column-width)
+  global-box-sizing: content-box, // content-box | border-box (affects inside/inside-static)
+  debug: (
+  image: hide,
+  color: rgba(#66f, .25),
+  output: background,
+  toggle: top right,
+  ),
+  use-custom: (
+    background-image: true,
+    background-options: false,
+    box-sizing: true,
+    clearfix: false,
+    rem: true,
+  )
+);
+
+$shorthand: 12 1/4 fluid float after;
+
+$small:30em;
+$medium:47em;
+$large:95em;
+
+
+// Colours
+$color-primary: #38a1d6;
+$color-secondary: #16f4d0;
+$color-tertiary: #fcee21;
+$color-grey: #a1acb5;
+$color-grey-light: #dce8ef;
+$color-grey-dark: #333;
+
+// Breakpoints
+$mobile-landscape: 30rem; // 480px
+$tablet: 40rem; // 640px
+$tablet-wide: 48rem; // 768px
+$desktop: 64rem; // 1024px
+$widescreen: 71.25rem; // 1140px
+
+
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+body {
+  padding: 0 .625rem;
+  font-family: $lucida-grande;
+}
+
+.container {
+  @include container();
+}
+
+header {
+  background-color: $color-primary;
+  height: 4rem;
+  margin-bottom: gutter();
+}
+
+
+section {
+  @extend %clearfix;
+  margin-bottom: gutter();
+}
+
+.gallery {
+  margin: 0;
+  @extend %clearfix;
+}
+
+.gallery__item {
+  @include gallery(6);
+  background-color: $color-tertiary;
+  height: 8rem;
+  margin-bottom: gutter();
+
+  &:nth-last-child(-n+2) {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: $tablet) {
+    @include gallery(4);
+
+    &:nth-last-child(-n+3) {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (min-width: $desktop) {
+    @include gallery(3);
+
+    &:nth-last-child(-n+4) {
+      margin-bottom: 0;
+    }
+  }
+}
+.ridiculous-background {
+  @include background-image(url("../images/gulp.png"), url("../images/grunt.png"));
+  background-position: center top, center;
+  background-repeat: no-repeat, repeat-x; //repeat-y
+  height: 560px;
+  @include border-color(red green null blue);
+  @include border-width(1em 20px null 100%);
+}
+.extreme-ridiculous{
+  @include background(url("../images/gulp.png"), linear-gradient(red, green), center no-repeat orange scroll);
+  height: 560px;
+  @include selection(true) {
+    background-color: #ffbb52;
+  }
+}
+footer {
+  @include span(full);
+  background-color: $color-grey;
+  height: 4rem;
+}
+
+.outline {
+  display: block;
+  margin: gutter() 0;
+  font-family: Lato, sans-serif;
+  color: $color-primary;
+  text-decoration: none;
+  text-align: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+.dezyne-heart-icon{
+  @include icon(before, heart) {
+        color: #b4b4b6;
+        font-size: 30px;
+    }
+}
+
+.dezyne-heart-icon:hover, .dezyne-heart-icon:focus {
+  @include icon(before, heart) {
+        color: red;
+        font-size: 30px;
+    }
+}
+
+.card {
+  position: relative;
+  margin: $element-top-margin 0 $element-bottom-margin 0;
+  background-color: $card-bg-color;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+  @extend .z-depth-1;
+
+
+  .card-title {
+    font-size: 24px;
+    font-weight: 300;
+    &.activator {
+      cursor: pointer;
+    }
+  }
+
+  // Card Sizes
+  &.small, &.medium, &.large {
+    position: relative;
+
+    .card-image {
+      max-height: 60%;
+      overflow: hidden;
+    }
+    .card-image + .card-content {
+      max-height: 40%;
+    }
+    .card-content {
+      max-height: 100%;
+      overflow: hidden;
+    }
+    .card-action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &.small {
+    height: 300px;
+  }
+
+  &.medium {
+    height: 400px;
+  }
+
+  &.large {
+    height: 500px;
+  }
+
+  // Horizontal Cards
+  &.horizontal {
+    &.small, &.medium, &.large {
+      .card-image {
+        height: 100%;
+        max-height: none;
+        overflow: visible;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+
+    display: flex;
+
+    .card-image {
+      max-width: 50%;
+      img {
+        border-radius: 2px 0 0 2px;
+        max-width: 100%;
+        width: auto;
+      }
+    }
+
+    .card-stacked {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      position: relative;
+
+      .card-content {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  // Sticky Action Section
+  &.sticky-action {
+    .card-action {
+      z-index: 2;
+    }
+
+    .card-reveal {
+      z-index: 1;
+      padding-bottom: 64px;
+    }
+  }
+
+
+
+
+  .card-image {
+    position: relative;
+
+    // Image background for content
+    img {
+      display: block;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .card-title {
+      color: $card-bg-color;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: $card-padding;
+    }
+
+  }
+
+  .card-content {
+    padding: $card-padding;
+    border-radius: 0 0 2px 2px;
+
+    p {
+      margin: 0;
+      color: inherit;
+    }
+    .card-title {
+      line-height: 48px;
+    }
+  }
+
+  .card-action {
+    position: relative;
+    background-color: inherit;
+    border-top: 1px solid rgba(160,160,160,.2);
+    padding: $card-padding;
+
+    a:not(.btn):not(.btn-large):not(.btn-floating) {
+      color: $card-link-color;
+      margin-right: $card-padding;
+      transition: color .3s ease;
+      text-transform: uppercase;
+
+      &:hover { color: $card-link-color-light; }
+    }
+  }
+
+  .card-reveal {
+    padding: $card-padding;
+    position: absolute;
+    background-color: $card-bg-color;
+    width: 100%;
+    overflow-y: auto;
+    left: 0;
+    top: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none;
+
+    .card-title {
+      cursor: pointer;
+      display: block;
+    }
+  }
+}
+
+.mdcard {
+  display:block;
+  min-width: 95px;
+  min-height: 95px;
+  background: #f4f4f4;
+  padding:1rem;
+  transition:all 250ms;
+  @include box_shadow(1);
+  &:hover,&:focus {
+    @include box_shadow(3);
+    transform:translateY(-5px);
+  }
+  &:active {
+    @include box_shadow(2);
+    transform:translateY(-2px);
+  }
+}
