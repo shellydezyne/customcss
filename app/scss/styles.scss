@@ -630,3 +630,141 @@ footer {
     transform:translateY(-2px);
   }
 }*/
+/*tag cloud start*/
+.tag_cloudhead{
+  @include span(70%);
+  margin-left:21%;
+
+  height:4rem;
+  width:60%;
+  margin-bottom: 1%;
+  border-bottom: 1px solid $color-grey-light;
+  margin-bottom: gutter();
+}
+.tags {
+  @include span(3 of 24);
+
+  height: 2rem;
+  width: auto;
+  margin-top: 3%;
+  background-color: $color-grey-light;
+  border-radius: 8px;
+  padding: 2px;
+
+
+
+
+}
+.tags_content{
+  text-align: center;
+  padding:5%;
+
+}
+
+/*tag cloud ends*/
+
+
+
+/*social button starts*/
+
+.tag_cloud{
+  @include span(70%);
+  margin-left:21%;
+
+  height:4rem;
+  width:60%;
+  margin-bottom: 1%;
+  border-bottom: 1px solid $color-grey-light;
+  margin-bottom: gutter();
+}
+.icon i{
+@include span(1 at 6 of 12);
+	font-size: 24px;
+	text-align: center;
+  padding: 1rem;
+  margin-right: 28px;
+
+	line-height: 50px;
+
+	margin-bottom: 5px;
+}
+.social i{
+@include span(1 at 6 of 12) ;
+  float: right;
+  font-size: 24px;
+	text-align: center;
+
+	line-height: 70px;
+
+	margin-bottom: 5px;
+}
+/*social button over*/
+
+/*follow button*/
+.follow{
+
+
+  height: auto;
+  width:80%;
+padding: 10px;
+  @extend %clearfix;
+  @include container(80%);
+  margin-left:13%;
+  margin-bottom: gutter();
+
+
+}
+.follow_item{
+
+
+  height: auto;
+  width: 10%;
+
+    margin-left:2%;
+  @include span(5 of 12  );
+
+}
+
+
+img.authors-image{
+  border-radius: 100%;
+
+}
+.authors_image{
+  margin-left: span(1);
+}
+
+.authors_name{
+  float: left;
+  font-size: 25px;
+  .author_follow{
+font-size: 14px;
+    float: right;
+    text-align: center;
+
+    border: 1px solid #000;
+    height: 20px;
+    width: 50px;
+    border: 1px solid #7df442;
+    border-radius: 8px;
+    padding: 2px;
+  }
+}
+.authors_bio{
+
+  margin-top: 7px;
+}
+/*follow button over*/
+.one_last{
+  text-align: center;
+  font-size: 23px;
+  margin-bottom: 1%;
+
+}
+.one_last_content{
+  @include span (53%) ;
+  margin-left:24%;
+    font-size: 20px;
+        font-style: italic;
+    margin-bottom: gutter();
+}
